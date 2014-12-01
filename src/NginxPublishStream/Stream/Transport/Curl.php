@@ -5,7 +5,8 @@ namespace NginxPublishStream\Stream\Transport;
  * Class Curl
  * @package NginxPublishStream\Stream\Transport
  */
-class Curl implements TransportInterface {
+class Curl implements TransportInterface
+{
 
 	/**
 	 * @param string $url
@@ -25,6 +26,23 @@ class Curl implements TransportInterface {
 	}
 
 	/**
+	 * @param resource $ch
+	 *
+	 * @throws \RuntimeException
+	 * @return string
+	 */
+	protected function curlExec($ch)
+	{
+		$result = curl_exec($ch);
+		if (curl_errno($ch) === 0) {
+			curl_close($ch);
+			return $result;
+		}
+		curl_close($ch);
+		throw new \RuntimeException(curl_error($ch));
+	}
+
+	/**
 	 * @param string $url
 	 *
 	 * @return string
@@ -34,20 +52,5 @@ class Curl implements TransportInterface {
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		return $this->curlExec($ch);
-	}
-
-	/**
-	 * @param resource $ch
-	 * @throws \RuntimeException
-	 * @return string
-	 */
-	protected function curlExec($ch) {
-		$result = curl_exec($ch);
-		if (curl_errno($ch) === 0) {
-			curl_close($ch);
-			return $result;
-		}
-		curl_close($ch);
-		throw new \RuntimeException(curl_error($ch));
 	}
 }

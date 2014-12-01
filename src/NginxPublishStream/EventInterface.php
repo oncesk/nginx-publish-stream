@@ -5,7 +5,8 @@ namespace NginxPublishStream;
  * Interface EventInterface
  * @package NginxPublishStream
  */
-interface EventInterface extends \ArrayAccess {
+interface EventInterface extends \ArrayAccess
+{
 
 	/**
 	 * @return string

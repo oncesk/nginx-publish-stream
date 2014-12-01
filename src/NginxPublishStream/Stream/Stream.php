@@ -32,14 +32,6 @@ class Stream implements StreamInterface
 	}
 
 	/**
-	 * @return Configuration
-	 */
-	public function getConfiguration()
-	{
-		return $this->configuration;
-	}
-
-	/**
 	 * @param string|int $channelId
 	 * @param string     $data
 	 *
@@ -48,9 +40,9 @@ class Stream implements StreamInterface
 	public function write($channelId, $data, \Closure $completeCallable = null)
 	{
 		$url = sprintf(
-			$this->baseUrlPattern,
-			$this->getConfiguration()->getEndpoint()->getPub()
-		) . '?id=' . $channelId;
+				$this->baseUrlPattern,
+				$this->getConfiguration()->getEndpoint()->getPub()
+			) . '?id=' . $channelId;
 		try {
 			$this->transport->post($url, $data);
 			if ($completeCallable) {
@@ -64,15 +56,23 @@ class Stream implements StreamInterface
 	}
 
 	/**
+	 * @return Configuration
+	 */
+	public function getConfiguration()
+	{
+		return $this->configuration;
+	}
+
+	/**
 	 * @param          $channelId
 	 * @param callable $callable
 	 */
 	public function listen($channelId, \Closure $callable)
 	{
 		$url = sprintf(
-			$this->baseUrlPattern,
-			$this->getConfiguration()->getEndpoint()->getSub()
-		) . '/?id=' . $channelId;
+				$this->baseUrlPattern,
+				$this->getConfiguration()->getEndpoint()->getSub()
+			) . '/?id=' . $channelId;
 		try {
 			$data = $this->transport->get($url);
 			$callable(false, $data);
