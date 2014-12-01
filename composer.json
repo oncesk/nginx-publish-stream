@@ -1,0 +1,16 @@
+{
+    "name": "oncesk/nginx-publish-stream",
+    "require": {
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "authors": [
+        {
+            "name": "Alexey Panasik",
+            "email": "unnfly@gmail.com"
+        },
+	    {
+		    "name": "Igor German",
+		    "email": "iggerman@yandex.ru"
+	    }
+    ]
+}
