@@ -5,7 +5,8 @@ namespace NginxPublishStream\Stream;
  * Class Endpoint
  * @package NginxPublishStream\Stream
  */
-class Endpoint {
+class Endpoint
+{
 
 	/**
 	 * @var string

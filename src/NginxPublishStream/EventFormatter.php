@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: once
- * Date: 12/1/14
- * Time: 4:03 PM
- */
-
 namespace NginxPublishStream;
 
-
-class EventFormatter implements EventFormatterInterface {
+/**
+ * Class EventFormatter
+ * @package NginxPublishStream
+ */
+class EventFormatter implements EventFormatterInterface
+{
 
 	/**
 	 * @param ChannelInterface $channel

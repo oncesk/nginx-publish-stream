@@ -41,19 +41,26 @@ class Event implements EventInterface
 	 *
 	 * @return $this
 	 */
-	public function addMetadata($key, $value) {
+	public function addMetadata($key, $value)
+	{
 		$this->metadata[$key] = $value;
 		return $this;
 	}
 
 	/**
-	 * @param array $data
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Offset to retrieve
+	 * @link http://php.net/manual/en/arrayaccess.offsetget.php
 	 *
-	 * @return $this
+	 * @param mixed $offset <p>
+	 *                      The offset to retrieve.
+	 *                      </p>
+	 *
+	 * @return mixed Can return all value types.
 	 */
-	public function setData(array $data = array()) {
-		$this->data = $data;
-		return $this;
+	public function offsetGet($offset)
+	{
+		return $this->offsetExists($offset) ? $this->data[$offset] : null;
 	}
 
 	/**
@@ -73,22 +80,6 @@ class Event implements EventInterface
 	public function offsetExists($offset)
 	{
 		return array_key_exists($offset, $this->data);
-	}
-
-	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Offset to retrieve
-	 * @link http://php.net/manual/en/arrayaccess.offsetget.php
-	 *
-	 * @param mixed $offset <p>
-	 *                      The offset to retrieve.
-	 *                      </p>
-	 *
-	 * @return mixed Can return all value types.
-	 */
-	public function offsetGet($offset)
-	{
-		return $this->offsetExists($offset) ? $this->data[$offset] : null;
 	}
 
 	/**
@@ -160,5 +151,16 @@ class Event implements EventInterface
 	public function getData()
 	{
 		return $this->data;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return $this
+	 */
+	public function setData(array $data = array())
+	{
+		$this->data = $data;
+		return $this;
 	}
 } 

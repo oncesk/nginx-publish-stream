@@ -1,7 +1,8 @@
 <?php
 namespace NginxPublishStream\Stream\Transport;
 
-interface TransportInterface {
+interface TransportInterface
+{
 
 	/**
 	 * @param string $url

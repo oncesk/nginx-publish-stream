@@ -5,7 +5,8 @@ namespace NginxPublishStream\Stream;
  * Class Configuration
  * @package NginxPublishStream\Stream
  */
-class Configuration {
+class Configuration
+{
 
 	/**
 	 * @var string
@@ -87,6 +88,6 @@ class Configuration {
 		if (!is_numeric($sleepInterval)) {
 			throw new \InvalidArgumentException('Sleep interval should be a integer');
 		}
-		$this->sleepInterval = (int) $sleepInterval;
+		$this->sleepInterval = (int)$sleepInterval;
 	}
 }

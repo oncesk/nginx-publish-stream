@@ -7,7 +7,8 @@ use NginxPublishStream\Stream\StreamInterface;
  * Class Channel
  * @package NginxPublishStream
  */
-class Channel implements ChannelInterface {
+class Channel implements ChannelInterface
+{
 
 	/**
 	 * @var string|int
@@ -34,15 +35,6 @@ class Channel implements ChannelInterface {
 		$this->stream = $stream;
 	}
 
-
-	/**
-	 * @return string|int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
-
 	/**
 	 * @param EventInterface $event
 	 *
@@ -54,6 +46,33 @@ class Channel implements ChannelInterface {
 			$this->getId(),
 			json_encode($this->getEventFormatter()->format($this, $event))
 		);
+	}
+
+	/**
+	 * @return string|int
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @return EventFormatterInterface
+	 */
+	public function getEventFormatter()
+	{
+		if (!$this->eventFormatter) {
+			$this->setEventFormatter(new EventFormatter());
+		}
+		return $this->eventFormatter;
+	}
+
+	/**
+	 * @param EventFormatterInterface $formatter
+	 */
+	public function setEventFormatter(EventFormatterInterface $formatter)
+	{
+		$this->eventFormatter = $formatter;
 	}
 
 	/**
@@ -73,24 +92,5 @@ class Channel implements ChannelInterface {
 				$listener(false, $jsonDecoded);
 			}
 		});
-	}
-
-	/**
-	 * @param EventFormatterInterface $formatter
-	 */
-	public function setEventFormatter(EventFormatterInterface $formatter)
-	{
-		$this->eventFormatter = $formatter;
-	}
-
-	/**
-	 * @return EventFormatterInterface
-	 */
-	public function getEventFormatter()
-	{
-		if (!$this->eventFormatter) {
-			$this->setEventFormatter(new EventFormatter());
-		}
-		return $this->eventFormatter;
 	}
 } 

@@ -1,12 +1,14 @@
 <?php
 namespace NginxPublishStream;
+
 use NginxPublishStream\Stream\StreamInterface;
 
 /**
  * Interface ChannelInterface
  * @package NginxPublishStream
  */
-interface ChannelInterface {
+interface ChannelInterface
+{
 
 	/**
 	 * @param string          $id

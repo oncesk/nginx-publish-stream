@@ -3,7 +3,8 @@ namespace NginxPublishStream\Stream;
 
 use NginxPublishStream\Stream\Transport\TransportInterface;
 
-interface StreamInterface {
+interface StreamInterface
+{
 
 	/**
 	 * @param Configuration      $configuration
@@ -18,7 +19,7 @@ interface StreamInterface {
 
 	/**
 	 * @param string|int $channelId
-	 * @param string $data
+	 * @param string     $data
 	 *
 	 * @return mixed
 	 */
