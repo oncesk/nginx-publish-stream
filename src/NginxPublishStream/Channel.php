@@ -80,14 +80,14 @@ class Channel implements ChannelInterface
 	 */
 	public function listen(\Closure $listener)
 	{
-		$this->stream->listen($this->getId(), function ($error, $response) use ($listener) {
+		$this->stream->listen($this->getId(), function ($error, $response = null) use ($listener) {
 			if ($error) {
 				$listener($error);
 				return;
 			}
 			$jsonDecoded = json_decode($response, true);
 			if ($jsonDecoded === false || $jsonDecoded === null) {
-				$listener(true);
+				$listener(true, null);
 			} else {
 				$listener(false, $jsonDecoded);
 			}

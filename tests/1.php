@@ -12,5 +12,7 @@ $channel = new \NginxPublishStream\Channel('my_channel_1', $stream);
 $channel->publish($event);
 
 $channel->listen(function ($error, $data) {
-	print_r($data);
+	if (!$error) {
+		print_r($data);
+	}
 });
