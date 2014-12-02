@@ -19,11 +19,6 @@ class Configuration
 	protected $port;
 
 	/**
-	 * @var int in microseconds
-	 */
-	protected $sleepInterval = 10000;
-
-	/**
 	 * @var Endpoint
 	 */
 	protected $endpoint;
@@ -70,24 +65,5 @@ class Configuration
 	public function getEndpoint()
 	{
 		return $this->endpoint;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getSleepInterval()
-	{
-		return $this->sleepInterval;
-	}
-
-	/**
-	 * @param int $sleepInterval
-	 */
-	public function setSleepInterval($sleepInterval)
-	{
-		if (!is_numeric($sleepInterval)) {
-			throw new \InvalidArgumentException('Sleep interval should be a integer');
-		}
-		$this->sleepInterval = (int)$sleepInterval;
 	}
 }
