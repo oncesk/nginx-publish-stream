@@ -21,7 +21,7 @@ class Curl implements TransportInterface
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, rawurlencode($body));
 		return $this->curlExec($ch);
 	}
 
